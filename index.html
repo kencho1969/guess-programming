@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黒塗りグリッド生成ツール</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="jszip.min.js"></script>
+</head>
+<body>
+  <main class="layout">
+    <section class="panel controls">
+      <h1>黒塗りグリッド生成ツール</h1>
+      <p class="help">
+        問題文は <strong>16文字 x 20行</strong>。不足分は空白で補完、超過分は切り詰めます。
+      </p>
+      <p class="help">入力内容は自動で非同期更新されます。</p>
+
+      <label for="problemInput">問題文 (20行)</label>
+      <textarea id="problemInput" spellcheck="false" rows="20" aria-label="問題文入力"></textarea>
+
+      <label for="permutationGrid">ブロック番号の順列 (4x5)</label>
+      <div
+        id="permutationGrid"
+        class="permutation-grid"
+        role="group"
+        aria-label="ブロック番号4x5編集グリッド"
+      ></div>
+      <p class="help">1〜20のみ入力可能。範囲外は無効、既存番号入力時は2マスを入れ替えます。</p>
+
+      <div class="button-row">
+        <button id="resetPermutationButton" type="button">順列を連番に戻す</button>
+      </div>
+
+      <div class="k-row">
+        <label for="kRange">閾値 k</label>
+        <input id="kRange" type="range" min="1" max="20" value="20">
+        <input id="kNumber" type="number" min="1" max="20" value="20">
+      </div>
+
+      <div class="button-row">
+        <button id="exportZipButton" type="button">k=1〜20 をZip保存</button>
+        <button id="saveProjectButton" type="button">プロジェクト保存</button>
+        <label class="file-button">
+          プロジェクト読込
+          <input id="importProjectInput" type="file" accept=".json,application/json">
+        </label>
+      </div>
+
+      <p id="statusMessage" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel preview">
+      <h2>プレビュー</h2>
+      <canvas id="previewCanvas" width="640" height="800" aria-label="グリッドプレビュー"></canvas>
+      <p class="help">黒塗り条件: ブロック番号 &gt; k のブロックは全面黒。</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
