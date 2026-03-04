@@ -16,7 +16,13 @@
       </p>
       <p class="help">入力内容は自動で非同期更新されます。</p>
 
-      <label for="problemInput">問題文 (20行)</label>
+      <div class="label-row">
+        <label for="problemInput">問題文 (20行)</label>
+        <label class="inline-check" for="hideProblemInput">
+          <input id="hideProblemInput" type="checkbox">
+          問題文を隠す
+        </label>
+      </div>
       <textarea id="problemInput" spellcheck="false" rows="20" aria-label="問題文入力"></textarea>
 
       <label for="permutationGrid">ブロック番号の順列 (4x5)</label>

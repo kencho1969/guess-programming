@@ -53,6 +53,32 @@ label {
   font-weight: 700;
 }
 
+.label-row {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.label-row > label {
+  margin: 0;
+}
+
+.inline-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.inline-check input[type="checkbox"] {
+  margin: 0;
+}
+
 textarea,
 input[type="number"] {
   width: 100%;
@@ -67,6 +93,10 @@ input[type="number"] {
 #problemInput {
   line-height: 1.45;
   resize: vertical;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .permutation-grid {

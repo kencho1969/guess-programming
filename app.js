@@ -10,6 +10,7 @@ const AUTO_REFRESH_DELAY_MS = 180;
 
 const elements = {
   problemInput: document.getElementById("problemInput"),
+  hideProblemInput: document.getElementById("hideProblemInput"),
   permutationGrid: document.getElementById("permutationGrid"),
   resetPermutationButton: document.getElementById("resetPermutationButton"),
   kRange: document.getElementById("kRange"),
@@ -281,6 +282,7 @@ function setBusy(isBusy) {
   elements.saveProjectButton.disabled = isBusy;
   elements.resetPermutationButton.disabled = isBusy;
   elements.problemInput.disabled = isBusy;
+  elements.hideProblemInput.disabled = isBusy;
   elements.kRange.disabled = isBusy;
   elements.kNumber.disabled = isBusy;
   elements.importProjectInput.disabled = isBusy;
@@ -492,8 +494,15 @@ function scheduleAutoRefresh() {
   }, AUTO_REFRESH_DELAY_MS);
 }
 
+function updateProblemInputVisibility() {
+  const shouldHide = elements.hideProblemInput.checked;
+  elements.problemInput.classList.toggle("hidden", shouldHide);
+}
+
 function initialize() {
   elements.problemInput.value = defaultProblemText();
+  elements.hideProblemInput.checked = false;
+  updateProblemInputVisibility();
   createPermutationGrid();
   setPermutationArray(defaultPermutationArray());
   syncKInputs(20);
@@ -512,6 +521,7 @@ function initialize() {
   });
 
   elements.problemInput.addEventListener("input", scheduleAutoRefresh);
+  elements.hideProblemInput.addEventListener("change", updateProblemInputVisibility);
 
   elements.exportZipButton.addEventListener("click", exportZip);
   elements.saveProjectButton.addEventListener("click", saveProject);
